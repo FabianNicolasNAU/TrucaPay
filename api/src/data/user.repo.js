@@ -1,7 +1,16 @@
 'use-strict'
+///////////////////////////valores a testear///////////////////////////////////////
 
-const compra1 = 'trucars';
 
+
+const compra1 = ["trucars", 1];
+const compra2 = ["trufood", 1];
+const compra3 = ["trucars", 12];
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
 const mysql = require('mysql');
 const provider = require('./providers/postgres_provider');
 const provider2 = require('./providers/postgres_provider2');
@@ -10,9 +19,14 @@ const UserRepo = () => {
         try {
             // con MySQL providers
             // return await provider.query("SELECT * FROM users");
-            console.log(compra1)
             // con PostgresProvider providers
-            let users = await provider.query("SELECT * FROM ordencompra WHERE idcompra = ?", 1);
+            const query = {
+                // give the query a unique name
+                name: 'fetch-user',
+                text: 'SELECT * FROM ordencompra where tienda = $1 and idcompra = $2',
+                values: [compra1[0],compra1[1]],
+              }
+            let users = await provider.query(query)
             return users.rows;
         } catch (err) {
             console.error(err)
