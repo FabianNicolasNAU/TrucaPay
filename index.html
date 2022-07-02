@@ -209,7 +209,7 @@
                             </div>
                             <br>
                             <div class="anular">
-                                <a href="https://www.youtube.com/shorts/96GnOB1iZQI" class="stretched-link"> Anular compra y volver al comercio</a>
+                                <a href="https://www.youtube.com/shorts/96GnOB1iZQI" class="stretched-link">  Anular compra y volver al comercio</a>
                             </div>
                         <!-- End -->
                     </div>
@@ -218,5 +218,22 @@
             </div>   
         </div>
     </div>
+    <script>
+
+        const corsOptions = {
+	    origin: "http://localhost:3000/users/"
+        };    
+        fetch('http://localhost:3000/users',
+        { method: 'GET',
+        headers: {
+            'Content-type': 'application/json'
+        },
+            mode: 'cors', // <---
+            cache: 'default'
+        })
+            .then(function(response) {
+            console.log(response.json())
+        })
+    </script>
 </body>
 </html>
