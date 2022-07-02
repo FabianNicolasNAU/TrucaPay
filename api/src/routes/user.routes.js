@@ -9,6 +9,11 @@ router.get('/', async function (req, res) {
         let users = await userService.findAll();
         return res.json(users);
 });
+router.get('/banco', async function (req, res) {
+    let tarjeta = await userService.findAlltar();
+    return res.json(tarjeta);
+});
+
 // CREATE
 // /users/
 router.post('/', async function (req, res) {

@@ -11,6 +11,13 @@ const UserService = () => {
         }
     }
 
+    const findAlltar = async () => {
+        try {
+            return await userRepo.findAlltar();
+        } catch (error) {
+            return Promise.reject({ error: true, message: error })
+        }
+    }
     // crear nueva
     const createUser = async ({ name, email, password }) => {
         try {
@@ -52,6 +59,7 @@ const UserService = () => {
 
     return {
         findAll: findAllUsers,
+        findAlltar,
         create: createUser,
         find: findUser,
         update: updateUser,

@@ -2,7 +2,7 @@
 
 const mysql = require('mysql');
 const provider = require('./providers/postgres_provider');
-//const provider2 = require('./providers/postgres_provider2');
+const provider2 = require('./providers/postgres_provider2');
 const UserRepo = () => {
     const findAllUsers = async () => {
         try {
@@ -12,6 +12,19 @@ const UserRepo = () => {
             // con PostgresProvider providers
             let users = await provider.query("SELECT * FROM ordencompra");
             return users.rows;
+        } catch (err) {
+            console.error(err)
+            Promise.reject(err)
+        }
+    }
+    const findAlltar = async () => {
+        try {
+            // con MySQL providers
+            // return await provider.query("SELECT * FROM users");
+
+            // con PostgresProvider providers
+            let tarjeta = await provider2.query("SELECT * FROM tarjeta");
+            return tarjeta.rows;
         } catch (err) {
             console.error(err)
             Promise.reject(err)
@@ -42,6 +55,7 @@ const UserRepo = () => {
 
     return {
         findAll: findAllUsers,
+        findAlltar,
         create: createUser,
     }
 }
