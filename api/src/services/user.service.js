@@ -11,7 +11,7 @@ const UserService = () => {
         }
     }
 
-    // create new user on database
+    // crear nueva
     const createUser = async ({ name, email, password }) => {
         try {
             if (!name) {

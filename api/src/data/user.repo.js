@@ -2,7 +2,7 @@
 
 const mysql = require('mysql');
 const provider = require('./providers/postgres_provider');
-
+const provider2 = require('./providers/postgres_provider2');
 const UserRepo = () => {
     const findAllUsers = async () => {
         try {
@@ -10,7 +10,7 @@ const UserRepo = () => {
             // return await provider.query("SELECT * FROM users");
 
             // con PostgresProvider providers
-            let users = await provider.query("SELECT * FROM users");
+            let users = await provider.query("SELECT * FROM ordencompra");
             return users.rows;
         } catch (err) {
             console.error(err)
