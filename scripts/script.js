@@ -1,8 +1,3 @@
-const compra1 = ['trucars',1]
-const compra2 = ['trufood',1]
-const compra3 = ['trucars',12]
-
-
 const num = document.getElementById("n_tarjeta")
 const tarjeta = document.getElementById("tarj_ico")
 
