@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrucaPay Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="estilo/style.css">
+    <script type="module" src="/scripts/script.js"></script>
+</head>
+<body>
+    <div id="color_div" class="p-1">
+    </div>
+    <nav class="navbar navbar-light">
+        <img src="recursos/trucaPay2.png" class="navbar-brand" width="145">
+    </nav>
+    <div class="container py-5">
+
+        <!-- For demo purpose -->
+        <!-- End -->
+
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <div class="bg-white rounded-lg shadow-sm p-5">
+                    <div class="d-flex justify-content-between pay">
+                        <span>Estás pagando en:</span>
+                        <span>Monto a pagar:</span>
+                    </div>
+                    <div class="d-flex justify-content-between pay">
+                        <img src="recursos/logo_market_gris_min.png" class="market" height="60" >
+                        <div class="amount">
+                            <span>$</span>
+                            <span>30.000</span>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- Credit card form tabs -->
+                    <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
+                        <li class="nav-item">
+                            <a data-toggle="pill" href="#nav-tab-card" class="nav-link active rounded-pill" onclick="mach_azul()">
+                                <i class="fa-regular fa-credit-card"></i>
+                                Crédito
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-toggle="pill" href="#nav-tab-tarjetadebito" class="nav-link rounded-pill" onclick="mach_azul()">
+                                <i class="fa-regular fa-credit-card"></i>
+                                Débito
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-toggle="pill" href="#nav-tab-mach" class="nav-link rounded-pill" onclick="myFunction()" id="img_mach">
+                                <img src="recursos/mach_azul.png" width="17">
+                                Mach
+                                <script>
+                                    const xd = document.getElementById("img_mach")
+                                    function myFunction() {
+                                    let html = ''
+                                    html +=`<img src="recursos/mach_blanco.png" width="17">
+                                    Mach`;
+                                    xd.innerHTML = html;
+                                    html = ''
+                                    }
+                                    function mach_azul(){
+                                    let html = ''
+                                    html +=`<img src="recursos/mach_azul.png" width="17">
+                                    Mach`;
+                                    xd.innerHTML = html;
+                                    html = ''
+                                    }
+                                </script>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- End -->
+        
+        
+                    <!-- Credit card form content -->
+                    <div class="tab-content">
+        
+                    <!-- credit card info-->
+                        <div id="nav-tab-card" class="tab-pane fade show active">
+                            <!--<p class="alert alert-success">Some text success or error</p>-->
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="cardNumber">Número de tarjeta</label>
+                                    <div class="input-group">
+                                        <input type="text" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" class="form-control" id="n_tarjeta" required maxlength="16">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text text-muted" id="tarj_ico">
+                                                <i class="fa-brands fa-cc-visa"></i>
+                                                <i class="fa-brands fa-cc-mastercard"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label><span class="hidden-xs">Fecha de experación</span></label>
+                                            <div class="input-group">
+                                                <input type="text" required class="form-control" placeholder="MM" maxlength="2">
+                                                <input type="text" required class="form-control" placeholder="AA" maxlength="2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group mb-4">
+                                            <label data-toggle="tooltip" title="Ingresa los 3 dígitos al reverso de tu tarjeta">CVV
+                                                <i class="fa fa-question-circle"></i>
+                                            </label>
+                                            <input type="password" required class="form-control" placeholder="***" maxlength="3">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label><span class="hidden-xs">Cuotas</span></label>
+                                        <select class="browser-default custom-select">
+                                            <option selected>Sin Cuotas</option>
+                                            <option value="1">3 cuotas</option>
+                                            <option value="2">12 cuotas</option>
+                                            <option value="3">24 cuotas</option>
+                                            <option value="4">48 cuotas</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>                          
+                                <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Pagar  </button>
+                            </form>
+                        </div>
+                        <!-- End -->
+            
+                        <!-- debit info -->
+                        <div id="nav-tab-tarjetadebito" class="tab-pane fade show activate">
+                            <form role="form">
+                                <div>
+                                    <label>Banco</label>
+                                    <select class="form-control">
+                                        <option value="" selected disabled>Selecciona tu banco</option>
+                                        <option value="1">Banco Estado</option>
+                                        <option value="2">Banco Santander</option>
+                                        <option value="3">Banco BCI</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="cardNumber">Número de tarjeta</label>
+                                    <div class="input-group">
+                                        <input type="text" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" class="form-control" required maxlength="16">
+                                        <div class="input-group-append">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label><span class="hidden-xs">Fecha de vencimiento</span></label>
+                                            <div class="input-group">
+                                                <input type="text" required class="form-control" placeholder="MM" maxlength="2">
+                                                <input type="text" required class="form-control" placeholder="AA" maxlength="2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group mb-4">
+                                            <label data-toggle="tooltip" title="Ingresa los 3 dígitos al reverso de tu tarjeta">
+                                                CVV
+                                                <i class="fa fa-question-circle"></i>
+                                            </label>
+                                            <input type="password" required class="form-control"  placeholder="***" maxlength="3">
+                                        </div>
+                                    </div>                                    
+                                </div>
+                                <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Pagar  </button>
+                            </form>
+                        </div>
+                            <!-- End -->
+                
+                            <!-- bank transfer info -->
+                            <div id="nav-tab-mach" class="tab-pane fade show activate">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="cardNumber">Número de tarjeta</label>
+                                        <div class="input-group">
+                                            <input type="text" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" class="form-control" required maxlength="16">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label><span class="hidden-xs">Rut</span></label>
+                                                <div class="input-group">
+                                                    <input type="text" name="rut" placeholder="11.111.111-1" class="form-control" required maxlength="12">
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Pagar  </button>
+                                </form>
+                            </div>
+                            <br>
+                            <div class="anular">
+                                <a href="https://www.youtube.com/shorts/96GnOB1iZQI" class="stretched-link"> Anular compra y volver al comercio</a>
+                            </div>
+                        <!-- End -->
+                    </div>
+                    <!-- End -->
+                </div>    
+            </div>   
+        </div>
+    </div>
+</body>
+</html>
+
+npm i dotenv express express-basic-auth jsonwebtoken pg
