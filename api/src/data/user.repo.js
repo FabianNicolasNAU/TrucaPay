@@ -2,7 +2,7 @@
 
 const mysql = require('mysql');
 const provider = require('./providers/postgres_provider');
-const provider2 = require('./providers/postgres_provider2');
+//const provider2 = require('./providers/postgres_provider2');
 const UserRepo = () => {
     const findAllUsers = async () => {
         try {
