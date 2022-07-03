@@ -36,7 +36,7 @@
                         <img src="recursos/logo_market_gris_min.png" class="market" height="60" >
                         <div class="amount">
                             <span>$</span>
-                            <span>30.000</span>
+                            <span id="precio"></span>
                         </div>
                     </div>
                     <br>
@@ -217,12 +217,19 @@
             </div>   
         </div>
     </div>
-    <script type="module">
-        fetch('http://localhost:3000/users/',{method: "GET"})
-        .then(response => response.json()).then()
-        .then(data => console.log(data))
-        ;
+    <script>
+
+        const api_url= 'http://localhost:3000/users';
+
+        fetch(api_url)
+        .then(respone => respone.json())
+        .then(data => {
+            let precio =document.getElementById('precio')
+            precio.innerHTML= data[0].precio;
+            console.log(data[0].precio)
+        })
+        .catch(error => console.log('ERROR'))
+
     </script>
-    <script type="module" src="/scripts/script.js"></script>
 </body>
 </html>
