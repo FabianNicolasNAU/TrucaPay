@@ -10,15 +10,23 @@ const UserService = () => {
             return Promise.reject({ error: true, message: error })
         }
     }
-
-    const findAlltar = async () => {
+    const findtar = async () => {
         try {
-            return await userRepo.findAlltar();
+            return await userRepo.findtar();
+        } catch (error) {
+            return Promise.reject({ error: true, message: error })
+        }
+    }
+    const findAlltar = async (req) => {
+        try {
+            idtarjeta = req
+            return await userRepo.findAlltar(idtarjeta);
         } catch (error) {
             return Promise.reject({ error: true, message: error })
         }
     }
     // crear nueva
+    /*
     const createUser = async ({ name, email, password }) => {
         try {
             if (!name) {
@@ -56,14 +64,11 @@ const UserService = () => {
         let user = {};
         return user;
     }
-
+    */
     return {
         findAll: findAllUsers,
         findAlltar,
-        create: createUser,
-        find: findUser,
-        update: updateUser,
-        delete: deleteUser
+        findtar,
     }
 }
 

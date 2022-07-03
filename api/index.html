@@ -13,6 +13,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="estilo/style.css">
+    <script type="module" src="src/data/user.repo.js"></script>
 </head>
 <body>
     <div id="color_div" class="p-1">
@@ -33,10 +34,11 @@
                         <span>Monto a pagar:</span>
                     </div>
                     <div class="d-flex justify-content-between pay">
-                        <img src="recursos/logo_market_gris_min.png" class="market" height="60" >
+                        <h3><img src="recursos/logo_market_gris_min.png" class="market" height="60" ><span id="tienda"> Nombre Tienda</span></h3>
+                        
                         <div class="amount">
                             <span>$</span>
-                            <span id="precio"></span>
+                            <span id="precio">Precio</span>
                         </div>
                     </div>
                     <br>
@@ -132,7 +134,7 @@
                                     </div>
                                 </div>
                                 <br>                          
-                                <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Pagar  </button>
+                                <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" id="botoncredito"> Pagar  </button>
                             </form>
                         </div>
                         <!-- End -->
@@ -224,9 +226,25 @@
         .then(data => {
             let precio =document.getElementById('precio')
             precio.innerHTML= data[0].precio;
-            console.log(data[0].precio)
+            let tienda =document.getElementById('tienda')
+            tienda.innerHTML=" "+ data[0].tienda;
         })
         .catch(error => console.log('ERROR'))
+
+        const tajeta_url= 'http://localhost:3000/users';
+
+        fetch(api_url)
+        .then(respone => respone.json())
+        .then(data => {
+            let precio =document.getElementById('precio')
+            precio.innerHTML= data[0].precio;
+            let tienda =document.getElementById('tienda')
+            tienda.innerHTML=" "+ data[0].tienda;
+        })
+        .catch(error => console.log('ERROR'))
+
+
+
 
     </script>
 </body>
