@@ -8,7 +8,7 @@ router.get('/', function (req, res) {
 });
 // CREATE
 // /users/
-router.post('/', function (req, res) { 
+/*router.post('/', function (req, res) { 
     res.send("Crear un usuario producto");
 });
 // READ
@@ -26,5 +26,5 @@ router.put('/:id', function (req, res) {
 router.delete('/:id', function (req, res) {
     res.send("Eliminar producto ID=" + req.params.id);
 });
-
+*/
 module.exports = router;

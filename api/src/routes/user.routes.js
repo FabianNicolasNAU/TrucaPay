@@ -9,13 +9,28 @@ router.get('/', async function (req, res) {
         let users = await userService.findAll();
         return res.json(users);
 });
+
 router.get('/banco', async function (req, res) {
-    let tarjeta = await userService.findAlltar();
+    try{     
+    let tarjeta = await userService.findtar();
     return res.json(tarjeta);
+    } catch (error) {
+        return Promise.reject({ error: true, message: error })
+    }
+});
+
+router.get('/banco/:id', async function (req, res) {
+    try{     
+    let tarjeta = await userService.findAlltar(req);
+    return res.json(tarjeta);
+    } catch (error) {
+        return Promise.reject({ error: true, message: error })
+    }
 });
 
 // CREATE
 // /users/
+/*
 router.post('/', async function (req, res) {
     try {
         let body = req.body;
@@ -49,5 +64,5 @@ router.put('/:id', function (req, res) {
 router.delete('/:id', function (req, res) {
     res.send("Eliminar usuario ID=" + req.params.id);
 });
-
+*/
 module.exports = router;

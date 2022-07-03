@@ -134,7 +134,7 @@
                                     </div>
                                 </div>
                                 <br>                          
-                                <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Pagar  </button>
+                                <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" id="botoncredito"> Pagar  </button>
                             </form>
                         </div>
                         <!-- End -->
@@ -228,11 +228,25 @@
         .then(data => {
             let precio =document.getElementById('precio')
             precio.innerHTML= data[0].precio;
-            console.log(data[0].precio)
             let tienda =document.getElementById('tienda')
             tienda.innerHTML=" "+ data[0].tienda;
         })
         .catch(error => console.log('ERROR'))
+
+        const tajeta_url= 'http://localhost:3000/users';
+
+        fetch(api_url)
+        .then(respone => respone.json())
+        .then(data => {
+            let precio =document.getElementById('precio')
+            precio.innerHTML= data[0].precio;
+            let tienda =document.getElementById('tienda')
+            tienda.innerHTML=" "+ data[0].tienda;
+        })
+        .catch(error => console.log('ERROR'))
+
+
+
 
     </script>
 </body>

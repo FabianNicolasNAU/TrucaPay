@@ -3,7 +3,7 @@
 const { Pool } = require('pg')
 
 const PostgresProvider2 = () => {
-    let conn = new Pool({
+    let pool = new Pool({
         user: process.env.DB2_USER,
         host: process.env.DB2_HOST,
         database: process.env.DB2_DATABASE,
@@ -15,7 +15,7 @@ const PostgresProvider2 = () => {
 
     const query = async (sql) => {
         return new Promise((resolve, reject) => {
-            conn.connect(function (err, client, done) {
+            pool.connect(function (err, client, done) {
                 if (err) reject(err)
                 client.query(sql, (err, result) => {
                     if (err) reject(err)
@@ -29,5 +29,4 @@ const PostgresProvider2 = () => {
         query
     }
 }
-
 module.exports = PostgresProvider2();
