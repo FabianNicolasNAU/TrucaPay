@@ -14,6 +14,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="estilo/style.css">
     <script type="module" src="src/data/user.repo.js"></script>
+    <script type="module" src="scripts/tarjeta.js"></script>
 </head>
 <body>
     <div id="color_div" class="p-1">
@@ -81,7 +82,9 @@
                         </li>
                     </ul>
                     <!-- End -->
-        
+                    <div id="realizado">
+                            
+                    </div>       
         
                     <!-- Credit card form content -->
                     <div class="tab-content">
@@ -89,7 +92,7 @@
                     <!-- credit card info-->
                         <div id="nav-tab-card" class="tab-pane fade show active">
                             <!--<p class="alert alert-success">Some text success or error</p>-->
-                            <form role="form">
+                            <form role="form" id="credit">
                                 <div class="form-group">
                                     <label for="cardNumber">Número de tarjeta</label>
                                     <div class="input-group">
@@ -105,10 +108,10 @@
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <div class="form-group">
-                                            <label><span class="hidden-xs">Fecha de experación</span></label>
+                                            <label><span class="hidden-xs">Fecha de expiración</span></label>
                                             <div class="input-group">
-                                                <input type="text" required class="form-control" placeholder="MM" maxlength="2">
-                                                <input type="text" required class="form-control" placeholder="AA" maxlength="2">
+                                                <input type="text" required class="form-control" placeholder="MM" maxlength="2" id="MMCredit">
+                                                <input type="text" required class="form-control" placeholder="AA" maxlength="2" id="AACredit">
                                             </div>
                                         </div>
                                     </div>
@@ -117,7 +120,7 @@
                                             <label data-toggle="tooltip" title="Ingresa los 3 dígitos al reverso de tu tarjeta">CVV
                                                 <i class="fa fa-question-circle"></i>
                                             </label>
-                                            <input type="password" required class="form-control" placeholder="***" maxlength="3">
+                                            <input type="password" required class="form-control" placeholder="***" maxlength="3" id="CVVCredit">
                                         </div>
                                     </div>
                                 </div>
@@ -134,7 +137,7 @@
                                     </div>
                                 </div>
                                 <br>                          
-                                <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" id="botoncredito"> Pagar  </button>
+                                <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" id="botoncredito"> Pagar  </button>
                             </form>
                         </div>
                         <!-- End -->

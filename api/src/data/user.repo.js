@@ -7,7 +7,7 @@ const provider2 = require('./providers/postgres_provider2');
 
 const compra1 = ["trucars", 1];
 const compra2 = ["trufood", 1];
-const compra3 = ["trutars", 12];
+const compra3 = ["trucars", 12];
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -38,6 +38,7 @@ const UserRepo = () => {
             // con PostgresProvider providers
             const query = {
                 text: 'SELECT * FROM credito',
+
               }
             let tarjeta = await provider2.query(query)
             return tarjeta.rows;
@@ -57,9 +58,7 @@ const UserRepo = () => {
                 text: 'SELECT * FROM credito where numerotarjeta = $1',
                 values: [id],
             }
-            console.log(id)
             let tarjeta =  await provider2.query(query1);
-            console.log(tarjeta)
             return tarjeta.rows;
             
         } catch (err) {
