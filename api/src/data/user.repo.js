@@ -3,9 +3,9 @@
 
 
 
-const compra1 = ["trucars", 1];
-const compra2 = ["trufood", 1];
-const compra3 = ["trucars", 12];
+const compra1 = ["TruCars", 1];
+const compra2 = ["TruFood", 1];
+const compra3 = ["TruCars", 12];
 
 
 
@@ -37,7 +37,12 @@ const UserRepo = () => {
             // return await provider.query("SELECT * FROM users");
 
             // con PostgresProvider providers
-            let tarjeta = await provider2.query("SELECT * FROM tarjeta");
+            const n_tarjeta = document.getElementById('n_tarjeta').innerHTML
+            const query = {
+                text: 'SELECT * FROM credito where numerotarjeta = $1',
+                values: [n_tarjeta],
+              }
+            let tarjeta = await provider2.query(query);
             return tarjeta.rows;
         } catch (err) {
             console.error(err)
