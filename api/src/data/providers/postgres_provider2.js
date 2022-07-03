@@ -29,4 +29,5 @@ const PostgresProvider2 = () => {
         query
     }
 }
+
 module.exports = PostgresProvider2();

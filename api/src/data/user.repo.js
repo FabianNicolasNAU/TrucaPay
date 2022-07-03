@@ -1,7 +1,9 @@
 'use-strict'
 ///////////////////////////valores a testear///////////////////////////////////////
 
-
+const mysql = require('mysql');
+const provider = require('./providers/postgres_provider');
+const provider2 = require('./providers/postgres_provider2');
 
 const compra1 = ["TruCars", 1];
 const compra2 = ["TruFood", 1];
@@ -9,10 +11,24 @@ const compra3 = ["TruCars", 12];
 
 
 //////////////////////////////////////////////////////////////////////////////////
-const mysql = require('mysql');
-const provider = require('./providers/postgres_provider');
-const provider2 = require('./providers/postgres_provider2');
+
 const UserRepo = () => {
+    const findtar = async () => {
+        try {
+            // con MySQL providers
+            // return await provider.query("SELECT * FROM users");
+
+            // con PostgresProvider providers
+            const query = {
+                text: 'SELECT * FROM credito',
+              }
+            let tarjeta = await provider2.query(query)
+            return tarjeta.rows;
+        } catch (err) {
+            console.error(err)
+            Promise.reject(err)
+        }
+    }
     const findAllUsers = async () => {
         try {
             // con MySQL providers
@@ -24,19 +40,6 @@ const UserRepo = () => {
               }
             let users = await provider.query(query)
             return users.rows;
-        } catch (err) {
-            console.error(err)
-            Promise.reject(err)
-        }
-    }
-    const findtar = async () => {
-        try {
-            // con MySQL providers
-            // return await provider.query("SELECT * FROM users");
-
-            // con PostgresProvider providers
-            let tarjeta = await provider2.query("SELECT * FROM tarjeta");
-            return tarjeta.rows;
         } catch (err) {
             console.error(err)
             Promise.reject(err)
