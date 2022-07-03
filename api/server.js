@@ -3,7 +3,10 @@ require('dotenv').config();
 const http = require('http');
 const express = require('express');
 const app = express();
-
+const cors = require("cors")
+app.use(
+    cors()
+)
 const hostname = process.env.HOSTNAME;
 const port = process.env.PORT;
 

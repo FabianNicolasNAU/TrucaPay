@@ -13,7 +13,6 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="estilo/style.css">
-    <script type="module" src="/scripts/script.js"></script>
 </head>
 <body>
     <div id="color_div" class="p-1">
@@ -218,22 +217,12 @@
             </div>   
         </div>
     </div>
-    <script>
-
-        const corsOptions = {
-	    origin: "http://localhost:3000/users/"
-        };    
-        fetch('http://localhost:3000/users',
-        { method: 'GET',
-        headers: {
-            'Content-type': 'application/json'
-        },
-            mode: 'cors', // <---
-            cache: 'default'
-        })
-            .then(function(response) {
-            console.log(response.json())
-        })
+    <script type="module">
+        fetch('http://localhost:3000/users/',{method: "GET"})
+        .then(response => response.json()).then()
+        .then(data => console.log(data))
+        ;
     </script>
+    <script type="module" src="/scripts/script.js"></script>
 </body>
 </html>
