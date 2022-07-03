@@ -5,14 +5,31 @@ const mysql = require('mysql');
 const provider = require('./providers/postgres_provider');
 const provider2 = require('./providers/postgres_provider2');
 
-const compra1 = ["TruCars", 1];
-const compra2 = ["TruFood", 1];
-const compra3 = ["TruCars", 12];
+const compra1 = ["trucars", 1];
+const compra2 = ["trufood", 1];
+const compra3 = ["trutars", 12];
 
 
 //////////////////////////////////////////////////////////////////////////////////
 
 const UserRepo = () => {
+    const findAllUsers = async () => {
+        try {
+            // con MySQL providers
+            // return await provider.query("SELECT * FROM users");
+            // con PostgresProvider providers
+            const query = {
+                name: 'a',
+                text: 'SELECT * FROM ordencompra where tienda = $1 and idcompra = $2',
+                values: [compra1[0],compra1[1]],
+              }
+            let users = await provider.query(query)
+            return users.rows;
+        } catch (err) {
+            console.error(err)
+            Promise.reject(err)
+        }
+    }
     const findtar = async () => {
         try {
             // con MySQL providers
@@ -24,23 +41,6 @@ const UserRepo = () => {
               }
             let tarjeta = await provider2.query(query)
             return tarjeta.rows;
-        } catch (err) {
-            console.error(err)
-            Promise.reject(err)
-        }
-    }
-    const findAllUsers = async () => {
-        try {
-            // con MySQL providers
-            // return await provider.query("SELECT * FROM users");
-            // con PostgresProvider providers
-            const query = {
-                name: 'a',
-                text: 'SELECT * FROM ordencompra where tienda = $1 and idcompra = $2',
-                values: [compra2[0],compra2[1]],
-              }
-            let users = await provider.query(query)
-            return users.rows;
         } catch (err) {
             console.error(err)
             Promise.reject(err)

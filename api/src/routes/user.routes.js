@@ -5,18 +5,13 @@ const { userService } = require('../services');
 
 // /users/
 router.get('/', async function (req, res) {
-
         let users = await userService.findAll();
         return res.json(users);
 });
 
-router.get('/banco', async function (req, res) {
-    try{     
+router.get('/banco', async function (req, res) {  
     let tarjeta = await userService.findtar();
     return res.json(tarjeta);
-    } catch (error) {
-        return Promise.reject({ error: true, message: error })
-    }
 });
 
 router.get('/banco/:id', async function (req, res) {
