@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="estilo/style.css">
     <script type="module" src="src/data/user.repo.js"></script>
     <script type="module" src="scripts/tarjeta.js"></script>
+    <script type="module" src="scripts/script.js"></script>
 </head>
 <body>
     <div id="color_div" class="p-1">
@@ -30,6 +31,9 @@
         <div class="row">
             <div class="col-lg-7 mx-auto">
                 <div class="bg-white rounded-lg shadow-sm p-5">
+                    <div id="realizado">    
+                    </div>
+                    
                     <div class="d-flex justify-content-between pay">
                         <span>Estás pagando en:</span>
                         <span>Monto a pagar:</span>
@@ -47,7 +51,7 @@
                     <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
                         <li class="nav-item">
                             <a data-toggle="pill" href="#nav-tab-card" class="nav-link active rounded-pill" onclick="mach_azul()">
-                                <i class="fa-regular fa-credit-card"></i>
+                                <i id="monto_credito" name="" class="fa-regular fa-credit-card"></i>
                                 Crédito
                             </a>
                         </li>
@@ -82,9 +86,7 @@
                         </li>
                     </ul>
                     <!-- End -->
-                    <div id="realizado">
-                            
-                    </div>       
+       
         
                     <!-- Credit card form content -->
                     <div class="tab-content">
@@ -137,28 +139,28 @@
                                     </div>
                                 </div>
                                 <br>                          
-                                <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" id="botoncredito"> Pagar  </button>
+                                <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" id="botoncredito">Pagar</button>
                             </form>
                         </div>
                         <!-- End -->
             
                         <!-- debit info -->
                         <div id="nav-tab-tarjetadebito" class="tab-pane fade show activate">
-                            <form role="form">
+                            <form role="form" id="form_debito">
                                 <div>
                                     <label>Banco</label>
-                                    <select class="form-control">
+                                    <select class="form-control" id="asd">
                                         <option value="" selected disabled>Selecciona tu banco</option>
-                                        <option value="1">Banco Estado</option>
-                                        <option value="2">Banco Santander</option>
-                                        <option value="3">Banco BCI</option>
+                                        <option value="Banco Estado" id="estado">Banco Estado</option>
+                                        <option value="Banco Santander" id="santander">Banco Santander</option>
+                                        <option value="Banco BCI" id="bci">Banco BCI</option>
                                     </select>
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label for="cardNumber">Número de tarjeta</label>
                                     <div class="input-group">
-                                        <input type="text" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" class="form-control" required maxlength="16">
+                                        <input type="text" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" class="form-control" required maxlength="16" id="n_tarjeta">
                                         <div class="input-group-append">
                                         </div>
                                     </div>
@@ -168,8 +170,8 @@
                                         <div class="form-group">
                                             <label><span class="hidden-xs">Fecha de vencimiento</span></label>
                                             <div class="input-group">
-                                                <input type="text" required class="form-control" placeholder="MM" maxlength="2">
-                                                <input type="text" required class="form-control" placeholder="AA" maxlength="2">
+                                                <input type="text" required class="form-control" placeholder="MM" maxlength="2" id="MMDebit">
+                                                <input type="text" required class="form-control" placeholder="AA" maxlength="2" id="AADebit">
                                             </div>
                                         </div>
                                     </div>
@@ -179,36 +181,36 @@
                                                 CVV
                                                 <i class="fa fa-question-circle"></i>
                                             </label>
-                                            <input type="password" required class="form-control"  placeholder="***" maxlength="3">
+                                            <input type="password" required class="form-control"  placeholder="***" maxlength="3" id="CVVDebit">
                                         </div>
                                     </div>                                    
                                 </div>
-                                <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Pagar  </button>
+                                <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" id="botondebito">Pagar</button>
                             </form>
                         </div>
                             <!-- End -->
                 
                             <!-- bank transfer info -->
                             <div id="nav-tab-mach" class="tab-pane fade show activate">
-                                <form role="form">
+                                <form role="form" id="form_mach">
                                     <div class="form-group">
                                         <label for="cardNumber">Número de tarjeta</label>
                                         <div class="input-group">
-                                            <input type="text" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" class="form-control" required maxlength="16">
+                                            <input type="text" name="cardNumber" placeholder="xxxx xxxx xxxx xxxx" class="form-control" required maxlength="16" id="n_tarjeta">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-8">
                                             <div class="form-group">
-                                                <label><span class="hidden-xs">Rut</span></label>
+                                                <label><span class="hidden-xs">Rut (sin digito verificador)</span></label>
                                                 <div class="input-group">
-                                                    <input type="text" name="rut" placeholder="11.111.111-1" class="form-control" required maxlength="12">
+                                                    <input type="text" name="rut" placeholder="Ej: 12345678" class="form-control" required maxlength="12" id="rut_mach">
                                                 </div>
                                                 <br>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Pagar  </button>
+                                    <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" id="botonmach"> Pagar  </button>
                                 </form>
                             </div>
                             <br>

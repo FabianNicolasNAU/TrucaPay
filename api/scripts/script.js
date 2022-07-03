@@ -27,7 +27,6 @@ num.addEventListener('keyup' , (e) =>{
             html = '';
         }
         if(codigo[0] !=5 && codigo[0] !=4){
-            console.log("tamalalawea")
             document.getElementById("n_tarjeta").style.borderColor = 'red';
             let html = ''
             html +=`

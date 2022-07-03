@@ -48,24 +48,73 @@ const UserRepo = () => {
         }
     }
     const findAlltar = async (id_req) => {
-        try {
-            // con MySQL providers
-            // return await provider.query("SELECT * FROM users");
-            
-            const id = id_req.params.id.toString()
-            // con PostgresProvider provider
-            const query1 = {
-                text: 'SELECT * FROM credito where numerotarjeta = $1',
-                values: [id],
+        if(id_req.params.id.includes('+')){
+            try {
+                // con MySQL providers
+                // return await provider.query("SELECT * FROM users");
+                
+                let id = id_req.params.id.split('_')
+                const banco = id[0]
+                id = id[1]
+                // con PostgresProvider provider
+                const query1 = {
+                    text: 'SELECT * FROM debito where numerotarjeta = $1 and banco = $2',
+                    values: [id, banco],
+                }
+                console.log(query1)
+                let tarjeta =  await provider2.query(query1);
+                return tarjeta.rows;
+                
+            } catch (err) {
+                console.error(err)
+                Promise.reject(err)
             }
-            let tarjeta =  await provider2.query(query1);
-            return tarjeta.rows;
-            
-        } catch (err) {
-            console.error(err)
-            Promise.reject(err)
+        }
+        if(id_req.params.id.includes(',')){
+            try {
+                // con MySQL providers
+                // return await provider.query("SELECT * FROM users");
+                
+                let id = id_req.params.id.split(',')
+                console.log(id)
+                const rut = id[0]
+                id = id[1]
+                // con PostgresProvider provider
+                const query1 = {
+                    text: 'SELECT * FROM mach where numerotarjeta = $1 and rut = $2',
+                    values: [id, rut],
+                }
+                console.log(query1)
+                let tarjeta =  await provider2.query(query1);
+                return tarjeta.rows;
+                
+            } catch (err) {
+                console.error(err)
+                Promise.reject(err)
+            }
+        }
+        else{
+            try {
+                // con MySQL providers
+                // return await provider.query("SELECT * FROM users");
+                
+                const id = id_req.params.id.toString()
+                // con PostgresProvider provider
+                const query1 = {
+                    text: 'SELECT * FROM credito where numerotarjeta = $1',
+                    values: [id],
+                }
+                let tarjeta =  await provider2.query(query1);
+                return tarjeta.rows;
+                
+            } catch (err) {
+                console.error(err)
+                Promise.reject(err)
+            }
         }
     }
+    
+    
     //const createUser = async ({ name, email, password }) => {
         //try {
             // con MySQL providers
@@ -92,7 +141,7 @@ const UserRepo = () => {
     return {
         findAll: findAllUsers,
         findAlltar,
-        findtar
+        findtar,
     }
 }
 
