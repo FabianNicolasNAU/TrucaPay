@@ -21,7 +21,6 @@ const UserRepo = () => {
             // return await provider.query("SELECT * FROM users");
             // con PostgresProvider providers
             const query = {
-                name: 'a',
                 text: 'SELECT * FROM ordencompra where tienda = $1 and idcompra = $2',
                 values: [compra2[0],compra2[1]],
               }
