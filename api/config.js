@@ -3,7 +3,7 @@ const config = {
         cors: {
             server: [
                 {
-                    origin: "localhost:3000/users", //servidor que deseas que consuma o (*) en caso que sea acceso libre
+                    origin: "localhost:3000/trucapay", //servidor que deseas que consuma o (*) en caso que sea acceso libre
                     credentials: true
                 }
             ]

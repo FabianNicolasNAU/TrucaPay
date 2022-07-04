@@ -25,8 +25,8 @@ router.get('/banco/:id', async function (req, res) {
 
 // CREATE
 // /users/
-/*
-router.post('/', async function (req, res) {
+
+router.post('/tienda', async function (req, res) {
     try {
         let body = req.body;
         let data = await userService.create(body);
@@ -44,6 +44,8 @@ router.post('/', async function (req, res) {
         return res.status(500).json(err)
     }
 });
+
+/*
 // READ
 // /users/:id
 router.get('/:id', function (req, res) {

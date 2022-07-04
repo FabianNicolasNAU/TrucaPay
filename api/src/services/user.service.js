@@ -25,10 +25,18 @@ const UserService = () => {
             return Promise.reject({ error: true, message: error })
         }
     }
+    const create = async (body) => {
+        try {
+            return await userRepo.create(body.estado, body.monto);
+        } catch (error) {
+            return Promise.reject({ message: error })
+        }
+    }
     return {
         findAll: findAllUsers,
         findAlltar,
-        findtar
+        findtar,
+        create
     }
 }
 

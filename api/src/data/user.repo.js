@@ -21,7 +21,7 @@ const UserRepo = () => {
             const query = {
                 name: 'a',
                 text: 'SELECT * FROM ordencompra where tienda = $1 and idcompra = $2',
-                values: [compra1[0],compra1[1]],
+                values: [compra2[0],compra2[1]],
               }
             let users = await provider.query(query)
             return users.rows;
@@ -48,7 +48,7 @@ const UserRepo = () => {
         }
     }
     const findAlltar = async (id_req) => {
-        if(id_req.params.id.includes('+')){
+        if(id_req.params.id.includes('_')){
             try {
                 // con MySQL providers
                 // return await provider.query("SELECT * FROM users");
@@ -115,8 +115,8 @@ const UserRepo = () => {
     }
     
     
-    //const createUser = async ({ name, email, password }) => {
-        //try {
+    const createUser = async (estado, monto) => {
+        try {
             // con MySQL providers
             // let sql = mysql.format("INSERT INTO users(name, email, password) VALUES (?, ?, ?)", [name, email, password]);
 
@@ -125,23 +125,26 @@ const UserRepo = () => {
             //     id: result.insertId, name, email, password
             // } : null;
 
-            // con PostgresProvider providers
-            //let sql = mysql.format("INSERT INTO users(name, email, password) VALUES (?, ?, ?) RETURNING id", [name, email, password]);
-            //const result = await provider.query(sql);
-            //return result.rowCount > 0 ? {
-            //    id: result.rows[0].id, name, email, password
-            //} : null;
+            //con PostgresProvider providers
+            const query1 = {
+                text: 'INSERT INTO orden(estado, monto) VALUES ($1, $2)',
+                values: [estado, monto],
+            }
+            
+            const result = await provider.query(query1);
+            return result.rows;
 
-        //} catch (err) {
-        //    console.error(err)
-        //    Promise.reject(err)
-        //}
-    //}
+        } catch (err) {
+            console.error(err)
+            Promise.reject(err)
+        }
+    }
 
     return {
         findAll: findAllUsers,
         findAlltar,
         findtar,
+        create: createUser
     }
 }
 
