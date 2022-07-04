@@ -2,6 +2,8 @@
 
 const { userRepo } = require('../data')
 
+
+    /////////////////////////// GET compra
 const UserService = () => {
     const findAllUsers = async () => {
         try {
@@ -10,6 +12,9 @@ const UserService = () => {
             return Promise.reject({ error: true, message: error })
         }
     }
+
+
+    /////////////////////////// GET tarjetas
     const findtar = async () => {
         try {
             return await userRepo.findtar();
@@ -17,6 +22,9 @@ const UserService = () => {
             return Promise.reject({ error: true, message: error })
         }
     }
+
+
+    /////////////////////////// GET tarjeta por id
     const findAlltar = async (req) => {
         try {
             idtarjeta = req
@@ -25,6 +33,9 @@ const UserService = () => {
             return Promise.reject({ error: true, message: error })
         }
     }
+
+
+    /////////////////////////// POST Orden de compra procesada
     const create = async (body) => {
         try {
             return await userRepo.create(body.estado, body.monto);

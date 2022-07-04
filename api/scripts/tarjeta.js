@@ -1,16 +1,22 @@
 const callbackurl = "#"
-
 const enviocredito = document.getElementById('credit')
 
+
+///////// cuando se hace el submit de credito se ejecuta esta funcion /////////////////////
 enviocredito.addEventListener('submit', (e)=>{
 e.preventDefault()
-const credito_url= 'http://localhost:3000/trucapay/banco/'+enviocredito['n_tarjeta'].value;//
+
+///////// Se ejecuta el fetch con la url especificada /////////////////////
+const credito_url= 'http://localhost:3000/trucapay/banco/'+enviocredito['n_tarjeta'].value;
 fetch(credito_url)
 .then(respone => respone.json())
 .then(data => {
     const fechaex = enviocredito['MMCredit'].value.toString()+"/"+enviocredito['AACredit'].value.toString()
     if((enviocredito['n_tarjeta'].value == data[0].numerotarjeta) && (fechaex == data[0].fechaex) && (enviocredito['CVVCredit'].value==data[0].cvv)){
-        console.log(data[0].monto)
+
+
+        ///////// Una vez se valida la tarjeta se muestra un mensaje en pantalla, se realiza un POST con la orden de compra realizada 
+        ///////// A la BD y se ejecuta el callback
         if(parseInt(document.getElementById('precio').innerHTML) <= parseInt(data[0].monto)){
             let html=''
             html+=`

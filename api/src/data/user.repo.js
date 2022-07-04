@@ -12,16 +12,16 @@ const compra3 = ["trucars", 12];
 
 //////////////////////////////////////////////////////////////////////////////////
 
+
 const UserRepo = () => {
+
+        /////////////////////////// GET compra
     const findAllUsers = async () => {
         try {
-            // con MySQL providers
-            // return await provider.query("SELECT * FROM users");
-            // con PostgresProvider providers
             const query = {
                 name: 'a',
                 text: 'SELECT * FROM ordencompra where tienda = $1 and idcompra = $2',
-                values: [compra2[0],compra2[1]],
+                values: [compra1[0],compra1[1]],
               }
             let users = await provider.query(query)
             return users.rows;
@@ -30,12 +30,10 @@ const UserRepo = () => {
             Promise.reject(err)
         }
     }
+    
+    /////////////////////////// GET tarjetas
     const findtar = async () => {
         try {
-            // con MySQL providers
-            // return await provider.query("SELECT * FROM users");
-
-            // con PostgresProvider providers
             const query = {
                 text: 'SELECT * FROM credito',
 
@@ -47,16 +45,21 @@ const UserRepo = () => {
             Promise.reject(err)
         }
     }
+    
+    /////////////////////////// GET tarjeta por id
     const findAlltar = async (id_req) => {
+
+
+
+
+        ////////////////////// tarjeta de debito
+
         if(id_req.params.id.includes('_')){
             try {
-                // con MySQL providers
-                // return await provider.query("SELECT * FROM users");
-                
+               
                 let id = id_req.params.id.split('_')
                 const banco = id[0]
                 id = id[1]
-                // con PostgresProvider provider
                 const query1 = {
                     text: 'SELECT * FROM debito where numerotarjeta = $1 and banco = $2',
                     values: [id, banco],
@@ -70,16 +73,15 @@ const UserRepo = () => {
                 Promise.reject(err)
             }
         }
+
+        ///////////////// tarjeta mach
+
         if(id_req.params.id.includes(',')){
             try {
-                // con MySQL providers
-                // return await provider.query("SELECT * FROM users");
-                
                 let id = id_req.params.id.split(',')
                 console.log(id)
                 const rut = id[0]
                 id = id[1]
-                // con PostgresProvider provider
                 const query1 = {
                     text: 'SELECT * FROM mach where numerotarjeta = $1 and rut = $2',
                     values: [id, rut],
@@ -93,13 +95,12 @@ const UserRepo = () => {
                 Promise.reject(err)
             }
         }
+
+
+        ///////////////// tarjeta credito
         else{
             try {
-                // con MySQL providers
-                // return await provider.query("SELECT * FROM users");
-                
                 const id = id_req.params.id.toString()
-                // con PostgresProvider provider
                 const query1 = {
                     text: 'SELECT * FROM credito where numerotarjeta = $1',
                     values: [id],
@@ -114,18 +115,9 @@ const UserRepo = () => {
         }
     }
     
-    
-    const createUser = async (estado, monto) => {
+        ///////////////// POST orden de compra procesada
+    const createOrden = async (estado, monto) => {
         try {
-            // con MySQL providers
-            // let sql = mysql.format("INSERT INTO users(name, email, password) VALUES (?, ?, ?)", [name, email, password]);
-
-            // con MySQL providers
-            // return result.affectedRows > 0 ? {
-            //     id: result.insertId, name, email, password
-            // } : null;
-
-            //con PostgresProvider providers
             const query1 = {
                 text: 'INSERT INTO orden(estado, monto) VALUES ($1, $2)',
                 values: [estado, monto],
@@ -144,7 +136,7 @@ const UserRepo = () => {
         findAll: findAllUsers,
         findAlltar,
         findtar,
-        create: createUser
+        create: createOrden
     }
 }
 
